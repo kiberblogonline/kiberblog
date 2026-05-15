@@ -1,0 +1,64 @@
+# ============================================================
+#  KiberBlog — Jekyll Sayt Sozlamalari
+#  GitHub Pages bilan to'liq mos keladi
+# ============================================================
+
+# --- Asosiy Ma'lumotlar ---
+title: "KiberBlog"
+description: "O'zbek tilidagi kiberxavfsizlik maqolalari"
+author: "KiberBlog"
+email: ""                         # Ixtiyoriy: admin@kiberblog.uz
+
+# --- Sayt URL (GitHub Pages uchun o'zgartiring) ---
+url: "https://username.github.io" # O'z GitHub username-ingizni kiriting
+baseurl: ""                        # Subdirectory ishlatmasangiz bo'sh qoldiring
+
+# --- Til va Vaqt Zonasi ---
+lang: "uz"
+timezone: "Asia/Tashkent"
+
+# --- Jekyll Qurilish Sozlamalari ---
+markdown: kramdown           # Markdown renderlash uchun standart engine
+highlighter: rouge           # Kod bloklari uchun sintaksis ranglash (built-in)
+permalink: /blog/:year/:month/:day/:title/  # Post URL strukturasi
+
+# --- Kramdown Sozlamalari ---
+kramdown:
+  input: GFM                 # GitHub Flavored Markdown
+  syntax_highlighter: rouge  # Rouge bilan integratsiya
+
+# --- Rouge (Sintaksis Ranglash) Sozlamalari ---
+rouge:
+  theme: "base16.dark"       # Terminal uslubidagi qorong'u mavzu
+
+# --- Sahifalar va Postlar ---
+show_excerpts: true          # index.html'da qisqacha mazmun ko'rsatish
+excerpt_separator: "<!--more-->"  # Maqolada shu belgidan oldin excerpt olinadi
+
+# --- Pagination (Agar kerak bo'lsa) ---
+# paginate: 10
+# paginate_path: "/blog/page:num/"
+
+# --- Chiqarib Tashlanadigan Fayllar ---
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/
+  - .git
+  - .gitignore
+  - README.md
+  - LICENSE
+
+# --- GitHub Pages Uchun Plugin ---
+plugins:
+  - jekyll-feed             # RSS/Atom feed avtomatik yaratadi
+  - jekyll-seo-tag          # SEO meta-teglari
+
+# --- Navigatsiya Menyusi ---
+# default.html layout bu ro'yxatni avtomatik o'qiydi
+navigation:
+  - title: "Blog"
+    url: "/"
+  - title: "About"
+    url: "/about/"

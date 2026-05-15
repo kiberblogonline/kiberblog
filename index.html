@@ -1,0 +1,189 @@
+---
+# ============================================================
+#  Bosh Sahifa — Barcha maqolalar ro'yxati
+#  Layout: default.html dan foydalanamiz
+# ============================================================
+layout: default
+title: "Blog"
+---
+
+<!--
+  Bosh sahifa sarlavhasi — Faqat birinchi marta ko'rinadi
+  Kerak bo'lmasa o'chirish mumkin
+-->
+<header class="page-header">
+  <h1 class="page-title">Maqolalar</h1>
+  <p class="page-subtitle">Kiberxavfsizlik haqida o'zbek tilida</p>
+</header>
+
+<hr class="divider" />
+
+<!-- ============================================================
+     MAQOLALAR RO'YXATI — site.posts tsikli orqali
+     Jekyll barcha _posts/ papkasidagi fayllarni o'qiydi
+     va yangi sanadan eski sanaga tomon tartibda chiqaradi
+============================================================ -->
+
+{% if site.posts.size > 0 %}
+
+  <ul class="post-list">
+
+    {% for post in site.posts %}
+    <li class="post-item">
+
+      <!-- Maqola sanasi -->
+      <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">
+        {{ post.date | date: "%d %B %Y" }}
+      </time>
+
+      <!-- Maqola sarlavhasi — asosiy havola -->
+      <h2 class="post-title">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h2>
+
+      <!-- Qisqacha mazmun (excerpt) -->
+      {% if post.excerpt %}
+        <p class="post-excerpt">
+          {{ post.excerpt | strip_html | truncatewords: 35 }}
+        </p>
+      {% endif %}
+
+      <!-- "O'qish" havolasi — diskret, minimal -->
+      <a href="{{ post.url | relative_url }}" class="read-link" aria-label="{{ post.title }} maqolasini o'qish">
+        O'qish &rarr;
+      </a>
+
+    </li>
+    {% endfor %}
+
+  </ul>
+
+{% else %}
+
+  <!-- Hozircha maqola yo'q bo'lsa -->
+  <div class="empty-state">
+    <p>Hali maqolalar qo'shilmagan.</p>
+    <p class="empty-hint">
+      Boshlash uchun <code>_posts/</code> papkasiga<br />
+      <code>YYYY-MM-DD-maqola-nomi.md</code> formatida fayl qo'shing.
+    </p>
+  </div>
+
+{% endif %}
+
+
+<!-- ============================================================
+     Sahifaga xos stillar — default.html ga tegmaslik uchun
+     Bu yerda faqat bosh sahifaga oid CSS yoziladi
+============================================================ -->
+<style>
+  /* === Sahifa Sarlavhasi ================================== */
+  .page-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .page-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.92rem;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  /* Ajratgich chiziq */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  /* === Maqolalar Ro'yxati ================================= */
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .post-item {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Sana */
+  .post-date {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--color-muted);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.4rem;
+  }
+
+  /* Sarlavha */
+  .post-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0 0 0.6rem;
+  }
+
+  .post-title a {
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .post-title a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Qisqacha mazmun */
+  .post-excerpt {
+    font-size: 0.95rem;
+    color: var(--color-muted);
+    line-height: 1.65;
+    margin: 0 0 0.85rem;
+  }
+
+  /* O'qish havolasi */
+  .read-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--color-muted);
+    letter-spacing: 0.03em;
+    transition: color 0.15s ease;
+  }
+
+  .read-link:hover {
+    color: var(--color-text);
+  }
+
+  /* === Bo'sh Holat ======================================== */
+  .empty-state {
+    padding: 3rem 0;
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .empty-state code {
+    font-size: 0.85em;
+  }
+
+  .empty-hint {
+    margin-top: 0.75rem;
+    font-size: 0.88rem;
+  }
+</style>
